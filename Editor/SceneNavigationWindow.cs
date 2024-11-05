@@ -3,11 +3,11 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace Utils.Editor
+namespace UUtils.Editor
 {
     public class SceneNavigationWindow : EditorWindow
     {
-        private Vector2 scrollPos;
+        private Vector2 _scrollPos;
 
         [MenuItem("Utils/Scene Navigation Window")]
         public static void ShowWindow()
@@ -23,7 +23,7 @@ namespace Utils.Editor
                 fontStyle = FontStyle.Bold
             };
             
-            scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
 
             EditorGUILayout.LabelField("Build Scenes:", labelStyle);
             var buildScenes = EditorBuildSettings.scenes;

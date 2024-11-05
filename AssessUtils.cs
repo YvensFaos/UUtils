@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     public static class AssessUtils
     {

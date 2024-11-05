@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Utils.Editor
+namespace UUtils.Editor
 {
     [CustomPropertyDrawer(typeof(CacheHelper<>))]
     public class CacheHelperEditor: PropertyDrawer

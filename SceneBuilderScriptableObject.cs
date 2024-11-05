@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     [CreateAssetMenu(fileName = "New Scene Builder", menuName = "Utils/Scene Builder", order = 0)]
     public class SceneBuilderScriptableObject : ScriptableObject

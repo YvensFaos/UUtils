@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     [RequireComponent(typeof(BoxCollider2D))]
     public class Box2DGizmoViewer : MonoBehaviour

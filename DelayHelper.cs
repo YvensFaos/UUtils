@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     public static class DelayHelper
     {

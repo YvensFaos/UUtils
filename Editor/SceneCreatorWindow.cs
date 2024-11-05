@@ -2,11 +2,11 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace Utils.Editor
+namespace UUtils.Editor
 {
     public class SceneCreatorWindow : EditorWindow
     {
-        private SceneBuilderScriptableObject prefabListSO;
+        private SceneBuilderScriptableObject _prefabListSo;
         
         [MenuItem("Utils/Scene Creator Window")]
         private static void ShowWindow()
@@ -19,7 +19,7 @@ namespace Utils.Editor
         private void OnGUI()
         {
             GUILayout.Label("Scene Creator", EditorStyles.boldLabel);
-            prefabListSO = EditorGUILayout.ObjectField("Prefab List", prefabListSO, typeof(SceneBuilderScriptableObject), false) as SceneBuilderScriptableObject;
+            _prefabListSo = EditorGUILayout.ObjectField("Prefab List", _prefabListSo, typeof(SceneBuilderScriptableObject), false) as SceneBuilderScriptableObject;
 
             if (GUILayout.Button("Create Scene"))
             {
@@ -39,12 +39,12 @@ namespace Utils.Editor
 
         private void LoadPrefabsToScene()
         {
-            if (prefabListSO == null)
+            if (_prefabListSo == null)
             {
                 DebugUtils.DebugLogErrorMsg("SceneBuilderScriptableObject was not assigned!");
                 return;
             }
-            prefabListSO.prefabList.ForEach(prefab => { PrefabUtility.InstantiatePrefab(prefab); });
+            _prefabListSo.prefabList.ForEach(prefab => { PrefabUtility.InstantiatePrefab(prefab); });
         }
     }
 }

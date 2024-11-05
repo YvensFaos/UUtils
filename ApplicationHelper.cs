@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Utils
+namespace UUtils
 {
     public class ApplicationHelper : MonoBehaviour
     {

@@ -1,24 +1,24 @@
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     public class WeakSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         #region Singleton
-        private static T singleton;
-        public static T GetSingleton() => singleton;
-        private static GameObject singletonObject;
+        private static T _singleton;
+        public static T GetSingleton() => _singleton;
+        private static GameObject _singletonObject;
 
         private void ControlSingleton()
         {
-            if (singleton != null)
+            if (_singleton != null)
             {
                 //Destroy the current singleton, so the new one takes its place
-                Destroy(singletonObject);
+                Destroy(_singletonObject);
             }
             //Set the singleton to be this object
-            singleton = GetComponent<T>();
-            singletonObject = gameObject;
+            _singleton = GetComponent<T>();
+            _singletonObject = gameObject;
         }
         #endregion
 

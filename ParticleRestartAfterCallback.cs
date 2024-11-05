@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Utils
+namespace UUtils
 {
     public class ParticleRestartAfterCallback : MonoBehaviour
     {

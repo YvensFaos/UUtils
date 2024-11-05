@@ -2,7 +2,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Utils
+namespace UUtils
 {
     public class TilemapInfo : MonoBehaviour
     {

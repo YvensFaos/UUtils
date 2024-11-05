@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     [CreateAssetMenu(fileName = "New Transform Object", menuName = "Utils/Transform Object", order = 0)]
     public class TransformScriptableObject : ScriptableObject

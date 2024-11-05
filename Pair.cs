@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     [Serializable]
     public class Pair<TA, TB>

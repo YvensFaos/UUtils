@@ -1,11 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
-    /// <summary>
-    /// Deprecated - Not in use!
-    /// </summary>
     public class RandomizeEmission : MonoBehaviour
     {
         [SerializeField] private ParticleSystem particles;
@@ -14,7 +11,7 @@ namespace Utils
         [SerializeField, Range(0, 10)] private int maxEmission;
         [SerializeField] private bool onStart;
 
-        private float startLifeTime;
+        private float _startLifeTime;
 
         private void Awake()
         {
@@ -24,7 +21,7 @@ namespace Utils
                 return;
             }
 
-            startLifeTime = particles.main.startLifetime.constant;
+            _startLifeTime = particles.main.startLifetime.constant;
         }
     
         private void Start()
@@ -46,7 +43,7 @@ namespace Utils
             while (true)
             {
                 yield return new WaitForSeconds(Random.Range(0, randomizerTimer));
-                yield return new WaitForSeconds(startLifeTime);
+                yield return new WaitForSeconds(_startLifeTime);
             
                 var emissionModule = particles.emission;
                 var rateOverTime = emissionModule.rateOverTime;

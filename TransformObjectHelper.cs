@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-namespace Utils
+namespace UUtils
 {
     public class TransformObjectHelper : MonoBehaviour
     {

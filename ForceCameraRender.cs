@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     public class ForceCameraRender : MonoBehaviour
     {

@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Utils
+namespace UUtils
 {
     public static class AnimateMaterialProperty
     {

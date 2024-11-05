@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     [RequireComponent(typeof(LineRenderer))]
     public class LineRendererController : MonoBehaviour

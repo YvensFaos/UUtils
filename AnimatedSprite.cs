@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     public class AnimatedSprite : MonoBehaviour
     {

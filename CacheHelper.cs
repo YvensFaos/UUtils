@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Utils
+namespace UUtils
 {
     [Serializable]
     public class CacheHelper<T> : UnityEngine.Object where T : UnityEngine.Object

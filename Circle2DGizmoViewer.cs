@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     [RequireComponent(typeof(CircleCollider2D))]
     public class Circle2DGizmoViewer : MonoBehaviour

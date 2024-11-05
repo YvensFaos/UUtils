@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     public static class MathHelper
     {

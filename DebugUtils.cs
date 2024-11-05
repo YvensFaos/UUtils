@@ -1,8 +1,7 @@
 using System;
-// using Core;
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     public static class DebugUtils
     {
@@ -16,7 +15,6 @@ namespace Utils
 
         public static void DebugArea(Vector3 position, float distance, float duration = 3.0f)
         {
-            // if (!GameManager.GetSingleton().Debug) return;
             Debug.DrawLine(position, position + distance * Vector3.right, Color.blue, duration);
             Debug.DrawLine(position, position + distance * Vector3.up, Color.green, duration);
             Debug.DrawLine(position, position + distance * Vector3.forward, Color.red, duration);

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     public class ResetMaterialPropertyOnApplicationQuit : MonoBehaviour
     {

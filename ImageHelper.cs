@@ -2,13 +2,13 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Utils
+namespace UUtils
 {
     public class ImageHelper : MonoBehaviour
     {
         [SerializeField]
         private Image image;
-        private Tweener internalTween;
+        private Tweener _internalTween;
         
         private void Awake()
         {
@@ -29,8 +29,8 @@ namespace Utils
                 return;
             }
 
-            internalTween?.Kill();
-            internalTween = image.DOColor(hexColor, 0.2f);
+            _internalTween?.Kill();
+            _internalTween = image.DOColor(hexColor, 0.2f);
         }
 
         public void AnimateToB3()
@@ -55,14 +55,14 @@ namespace Utils
 
         public void AnimateColorTo(Vector3 color)
         {
-            internalTween?.Kill();
-            internalTween = image.DOColor(new Color(color.x, color.y, color.z, 1.0f), 0.2f);
+            _internalTween?.Kill();
+            _internalTween = image.DOColor(new Color(color.x, color.y, color.z, 1.0f), 0.2f);
         }
         
         public void AnimateColorTo(Color color)
         {
-            internalTween?.Kill();
-            internalTween = image.DOColor(color, 0.2f);
+            _internalTween?.Kill();
+            _internalTween = image.DOColor(color, 0.2f);
         }
 
         public void ChangeSpriteTo(Sprite sprite)

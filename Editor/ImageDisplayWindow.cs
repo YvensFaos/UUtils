@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Utils.Editor
+namespace UUtils.Editor
 {
     public class ImageDisplayWindow : EditorWindow
     {

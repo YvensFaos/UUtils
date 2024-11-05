@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Utils.Editor
+namespace UUtils.Editor
 {
     public static class GetAllScriptableObjectsOfType
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     public abstract class StrongSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {

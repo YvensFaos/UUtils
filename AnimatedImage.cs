@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Utils
+namespace UUtils
 {
     public class AnimatedImage : MonoBehaviour
     {

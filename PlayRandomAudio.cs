@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utils
+namespace UUtils
 {
     public class PlayRandomAudio : MonoBehaviour
     {
