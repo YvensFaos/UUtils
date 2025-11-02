@@ -38,6 +38,12 @@ namespace UUtils
             Debug.LogError(msg);
         }
 
+        public static void DebugLogWarningMsg(string msg)
+        {
+            if (!SetDebug) return;
+            Debug.LogWarning(msg);
+        }
+
         public static void DebugLogException(Exception exception)
         {
             if (!SetDebug) return;
