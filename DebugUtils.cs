@@ -5,6 +5,24 @@ namespace UUtils
 {
     public static class DebugUtils
     {
+        [Flags]
+        public enum DebugType
+        {
+            None = 0,
+            Regular = 1,
+            System = 2,
+            Temporary = 4,
+            Warning = 8,
+            Error = 16,
+            Verbose = 32
+        }
+
+        #if UNITY_EDITOR
+        private static DebugType enabledDebugTypes = DebugType.Regular | DebugType.System | DebugType.Warning | DebugType.Error;
+        #else
+        private static DebugType enabledDebugTypes = DebugType.None;
+        #endif
+        
         private static bool _debug = true;
 
         public static bool SetDebug
@@ -44,7 +62,16 @@ namespace UUtils
         public static void DebugLogMsg(string msg)
         {
             if (!SetDebug) return;
-            Debug.Log(msg);
+            DebugLogMsg(msg, DebugType.Verbose);
+        }
+        
+        public static void DebugLogMsg(string msg, DebugType type)
+        {
+            if (!SetDebug) return;
+            if (enabledDebugTypes.HasFlag(type))
+            {
+                Debug.Log(GetColoredMessage(msg, type));
+            }
         }
 
         public static void DebugAssertion(bool condition, string msg)
@@ -70,6 +97,21 @@ namespace UUtils
             if (!SetDebug) return;
             Debug.LogError(exception.ToString());
             Debug.LogError(exception.StackTrace);
+        }
+        
+        private static string GetColoredMessage(string msg, DebugType type)
+        {
+            var color = type switch
+            {
+                DebugType.Regular => "white",
+                DebugType.System => "cyan",
+                DebugType.Temporary => "yellow",
+                DebugType.Warning => "orange",
+                DebugType.Error => "red",
+                DebugType.Verbose => "green",
+                _ => "white"
+            };
+            return $"<color={color}>{msg}</color>";
         }
     }
 }

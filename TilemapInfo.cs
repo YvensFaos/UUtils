@@ -34,9 +34,9 @@ namespace UUtils
             _initialized = true;
 
             // Output the bounds and dimensions
-            DebugUtils.DebugLogMsg("Tile Map Bounds: " + _tileMapBounds);
-            DebugUtils.DebugLogMsg("Width: " + width);
-            DebugUtils.DebugLogMsg("Height: " + height);
+            DebugUtils.DebugLogMsg("Tile Map Bounds: " + _tileMapBounds, DebugUtils.DebugType.System);
+            DebugUtils.DebugLogMsg("Width: " + width, DebugUtils.DebugType.System);
+            DebugUtils.DebugLogMsg("Height: " + height, DebugUtils.DebugType.System);
         }
 
         public Bounds GetTileMapBounds()
