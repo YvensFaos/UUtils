@@ -15,9 +15,30 @@ namespace UUtils
 
         public static void DebugArea(Vector3 position, float distance, float duration = 3.0f)
         {
+            if (!SetDebug) return;
             Debug.DrawLine(position, position + distance * Vector3.right, Color.blue, duration);
             Debug.DrawLine(position, position + distance * Vector3.up, Color.green, duration);
             Debug.DrawLine(position, position + distance * Vector3.forward, Color.red, duration);
+        }
+
+        public static void DebugCircle(Vector3 position, Color color, float radius, int segments = 12,
+            float duration = 3.0f)
+        {
+            if (!SetDebug) return;
+            if (radius <= 0.0f || segments <= 0) return;
+
+            var angleStep = (360.0f / segments) * Mathf.Deg2Rad;
+            var lineStart = Vector3.zero;
+            var lineEnd = Vector3.zero;
+
+            for (var i = 0; i < segments; i++)
+            {
+                lineStart.x = Mathf.Cos(angleStep * i) * radius;
+                lineStart.y = Mathf.Sin(angleStep * i) * radius;
+                lineEnd.x = Mathf.Cos(angleStep * (i + 1)) * radius;
+                lineEnd.y = Mathf.Sin(angleStep * (i + 1)) * radius;
+                Debug.DrawLine(lineStart + position, lineEnd + position, color, duration);
+            }
         }
 
         public static void DebugLogMsg(string msg)
@@ -31,7 +52,7 @@ namespace UUtils
             if (!SetDebug) return;
             Debug.Assert(condition, msg);
         }
-        
+
         public static void DebugLogErrorMsg(string msg)
         {
             if (!SetDebug) return;
