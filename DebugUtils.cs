@@ -18,9 +18,9 @@ namespace UUtils
         }
 
         #if UNITY_EDITOR
-        private static DebugType enabledDebugTypes = DebugType.Regular | DebugType.System | DebugType.Warning | DebugType.Error;
+        public static DebugType enabledDebugTypes = DebugType.Regular | DebugType.System | DebugType.Warning | DebugType.Error;
         #else
-        private static DebugType enabledDebugTypes = DebugType.None;
+        public static DebugType enabledDebugTypes = DebugType.None;
         #endif
         
         private static bool _debug = true;
