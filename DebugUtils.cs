@@ -59,6 +59,12 @@ namespace UUtils
             }
         }
 
+        public static void DebugLine(Vector3 start, Vector3 end, Color color, float duration = 3.0f)
+        {
+            if (!SetDebug) return;
+            Debug.DrawLine(start, end, color, duration);
+        }
+
         public static void DebugLogMsg(string msg)
         {
             if (!SetDebug) return;
