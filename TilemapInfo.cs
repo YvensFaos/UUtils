@@ -6,6 +6,7 @@ namespace UUtils
 {
     public class TilemapInfo : MonoBehaviour
     {
+        [SerializeField] private Tilemap tileMap;
         [SerializeField] private TilemapRenderer tileMapRenderer;
         [SerializeField] private bool getInfoOnAwake = false;
         [SerializeField] private Vector2Int dimensions;
@@ -23,7 +24,9 @@ namespace UUtils
         [Button("Get info")]
         private void GetInfo()
         {
+            tileMap.CompressBounds();
             _tileMapBounds = tileMapRenderer.bounds;
+            
 
             // Access the dimensions of the bounds
             var width = _tileMapBounds.size.x;
