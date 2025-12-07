@@ -19,6 +19,8 @@ namespace UUtils
         [SerializeField]
         private LineRenderer line;
 
+        private Tween _internalTween;
+
         private void Awake()
         {
             AssessUtils.CheckRequirement(ref line, this);
@@ -46,6 +48,49 @@ namespace UUtils
         {
             line.startColor = color;
             line.endColor = color;
+        }
+
+        public void SetStartWidth(float width)
+        {
+            line.startWidth = width;
+        }
+
+        public void SetEndWidth(float width)
+        {
+            line.endWidth = width;
+        }
+
+        public void IncreaseWidth(float increment)
+        {
+            line.startWidth += increment;
+            line.endWidth += increment;
+        }
+
+        public Tween IncreaseWidthBy(float increment, float time, UnityAction callback = null)
+        {
+            _internalTween?.Kill();
+            var increaseBy = line.startWidth + increment;
+            _internalTween = DOTween.To(() => line.startWidth, value => line.startWidth = value, increaseBy, time).OnComplete(() =>
+            {
+                callback?.Invoke();
+            });
+            return _internalTween;
+        }
+
+        public void SetWidth(float width)
+        {
+            SetStartWidth(width);
+            SetEndWidth(width);
+        }
+
+        public Material GetLineRendererMaterial()
+        {
+            return line.material;
+        }
+
+        public float GetWidth()
+        {
+            return line.startWidth;
         }
 
         [Button("Reset Positions")]
