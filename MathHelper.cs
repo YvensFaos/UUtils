@@ -5,6 +5,7 @@
  * To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/
  * or see the LICENSE file in the root directory of this repository.
  */
+
 using UnityEngine;
 
 namespace UUtils
@@ -14,6 +15,11 @@ namespace UUtils
         public static float NormalizeFromMinusOneToOne(float number)
         {
             return (1 + number) / 2.0f;
+        }
+
+        public static bool CloseTo(float a, float b, float epsilon = 0.001f)
+        {
+            return Mathf.Abs(a - b) < epsilon;
         }
         
         public static int ClosestToDivisible(int number, int divisible)
