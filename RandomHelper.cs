@@ -16,6 +16,12 @@ namespace UUtils
         {
             return list.Count == 1 ? list[0] : list[Random.Range(0, list.Count)];
         }
+        
+        public static T GetRandomFromListWithIndex(List<T> list, out int index)
+        {
+            index = list.Count == 1 ? 0 : Random.Range(0, list.Count);
+            return list[index];
+        }
     }
 
     public static class RandomChanceUtils
