@@ -179,6 +179,11 @@ namespace UUtils
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
         }
 
+        public static string GetSimplifiedTimestamp()
+        {
+            return DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss", CultureInfo.InvariantCulture);
+        }
+
         private void Dispose(bool disposing)
         {
             if (_disposed) return;
