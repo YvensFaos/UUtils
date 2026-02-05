@@ -42,7 +42,7 @@ namespace UUtils
             return StartNewLogFile(logFileName, GetDefaultLogsDirectory());
         }
 
-        public string StartNewLogFile(string fileName, string directoryPath, bool appendIfExists = false)
+        private string StartNewLogFile(string fileName, string directoryPath, bool appendIfExists = false)
         {
             lock (_lockObject)
             {
@@ -154,7 +154,6 @@ namespace UUtils
                     }
 
                     DebugUtils.DebugLogMsg($"Log file closed: {CurrentFilePath}.", DebugUtils.DebugType.System);
-
                     CurrentFilePath = null;
                 }
                 catch (Exception ex)
