@@ -1,10 +1,11 @@
 /*
  * Copyright (c) 2025 Yvens R Serpa [https://github.com/YvensFaos/]
- * 
+ *
  * This work is licensed under the Creative Commons Attribution 4.0 International License.
  * To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/
  * or see the LICENSE file in the root directory of this repository.
  */
+
 using System;
 using System.Collections;
 using UnityEngine;
@@ -17,10 +18,21 @@ namespace UUtils
         {
             return caller.StartCoroutine(DelayOneFrame(delayAction));
         }
-        
+
         private static IEnumerator DelayOneFrame(Action delayAction)
         {
             yield return null;
+            delayAction();
+        }
+
+        public static Coroutine Delay(MonoBehaviour caller, float time, Action delayAction)
+        {
+            return caller.StartCoroutine(DelayFor(time, delayAction));
+        }
+
+        private static IEnumerator DelayFor(float time, Action delayAction)
+        {
+            yield return new WaitForSeconds(time);
             delayAction();
         }
     }
