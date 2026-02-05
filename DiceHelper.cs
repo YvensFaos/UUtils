@@ -47,6 +47,11 @@ namespace UUtils
 
         private static int ParseDiceNotation(string diceNotation)
         {
+            if (diceNotation.Equals("1d1"))
+            {
+                return 1;
+            }
+            
             // Regex pattern to match XdY format where X and Y are numbers
             const string pattern = @"^(\d+)d(\d+)$";
             var match = Regex.Match(diceNotation, pattern);

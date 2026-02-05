@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2025 Yvens R Serpa [https://github.com/YvensFaos/]
- * 
+ *
  * This work is licensed under the Creative Commons Attribution 4.0 International License.
  * To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/
  * or see the LICENSE file in the root directory of this repository.
  */
+
 using System;
-using System.Globalization;
 using System.IO;
 using System.Text;
 using UnityEngine;
@@ -15,7 +15,7 @@ namespace UUtils
 {
     public sealed class Logger : IDisposable
     {
-        private const string DefaultLOGFolder = "Logs";
+        private const string DefaultLogFolder = "Logs";
         private const string DefaultFileExtension = ".log";
         private readonly object _lockObject = new();
         private readonly DebugUtils.DebugType _minimumLogLevel;
@@ -24,11 +24,11 @@ namespace UUtils
         private FileStream _fileStream;
         private bool _disposed;
         private string CurrentFilePath { get; set; }
-        
+
         public Logger(DebugUtils.DebugType minimumLogLevel = DebugUtils.DebugType.System)
         {
             _minimumLogLevel = minimumLogLevel;
-            
+
             // Create default logs directory if it doesn't exist
             var defaultPath = GetDefaultLogsDirectory();
             if (!Directory.Exists(defaultPath))
@@ -51,7 +51,7 @@ namespace UUtils
                 {
                     directoryPath = GetDefaultLogsDirectory();
                 }
-                
+
                 if (!Directory.Exists(directoryPath))
                 {
                     try
@@ -60,7 +60,7 @@ namespace UUtils
                     }
                     catch (Exception ex)
                     {
-                        DebugUtils.DebugLogException(ex);
+                        DebugUtils.DebugLogException(ex, true);
                         return null;
                     }
                 }
@@ -81,12 +81,12 @@ namespace UUtils
                     _streamWriter = new StreamWriter(_fileStream, Encoding.UTF8);
                     _streamWriter.AutoFlush = true;
                     CurrentFilePath = fullPath;
-                    DebugUtils.DebugLogMsg($"Log file started: {fullPath}.", DebugUtils.DebugType.System);
+                    DebugUtils.DebugLogMsg($"Log file started: {fullPath}.", DebugUtils.DebugType.System, true);
                     return fullPath;
                 }
                 catch (Exception ex)
                 {
-                    DebugUtils.DebugLogException(ex);
+                    DebugUtils.DebugLogException(ex, true);
                     CloseLogFile();
                     return null;
                 }
@@ -96,14 +96,13 @@ namespace UUtils
         public void AddLine(string message, DebugUtils.DebugType debugType = DebugUtils.DebugType.System,
             bool includeTimestamp = true)
         {
-            if ((int)debugType < (int)_minimumLogLevel)
-                return;
+            if (!_minimumLogLevel.HasFlag(debugType)) return;
 
             lock (_lockObject)
             {
                 if (_streamWriter == null)
                 {
-                    DebugUtils.DebugLogErrorMsg("Logger not initialized. Call StartNewLogFile first.");
+                    DebugUtils.DebugLogErrorMsg("Logger not initialized. Call StartNewLogFile first.", true);
                     return;
                 }
 
@@ -112,7 +111,7 @@ namespace UUtils
                     _stringBuilder.Clear();
                     if (includeTimestamp)
                     {
-                        _stringBuilder.Append(GetTimestamp());
+                        _stringBuilder.Append(TimestampHelper.GetTimestamp());
                         _stringBuilder.Append(";");
                     }
 
@@ -124,7 +123,7 @@ namespace UUtils
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError($"Failed to write to log file: {ex.Message}");
+                    DebugUtils.DebugLogException(ex, true);
                 }
             }
         }
@@ -153,12 +152,12 @@ namespace UUtils
                         _fileStream = null;
                     }
 
-                    DebugUtils.DebugLogMsg($"Log file closed: {CurrentFilePath}.", DebugUtils.DebugType.System);
+                    DebugUtils.DebugLogMsg($"Log file closed: {CurrentFilePath}.", DebugUtils.DebugType.System, true);
                     CurrentFilePath = null;
                 }
                 catch (Exception ex)
                 {
-                    DebugUtils.DebugLogException(ex);
+                    DebugUtils.DebugLogException(ex, true);
                 }
             }
         }
@@ -170,17 +169,7 @@ namespace UUtils
 #else
             var basePath = Application.persistentDataPath;
 #endif
-            return Path.Combine(basePath, DefaultLOGFolder);
-        }
-
-        private static string GetTimestamp()
-        {
-            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-        }
-
-        public static string GetSimplifiedTimestamp()
-        {
-            return DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss", CultureInfo.InvariantCulture);
+            return Path.Combine(basePath, DefaultLogFolder);
         }
 
         private void Dispose(bool disposing)
@@ -190,6 +179,7 @@ namespace UUtils
             {
                 CloseLogFile();
             }
+
             _disposed = true;
         }
 
