@@ -14,7 +14,7 @@ namespace UUtils
         #region Singleton
 
         private static T _singleton;
-        protected bool markedToDie;
+        protected bool MarkedToDie;
 
         public static T GetSingleton()
         {
@@ -30,13 +30,14 @@ namespace UUtils
             if (_singleton != null)
             {
                 //Destroy the new element and interrupt its initialization
-                markedToDie = true;
+                MarkedToDie = true;
                 DestroyImmediate(gameObject);
                 return;
             }
 
             //Set the singleton to be this object
             _singleton = GetComponent<T>();
+            DontDestroyOnLoad(gameObject);
         }
 
         #endregion
