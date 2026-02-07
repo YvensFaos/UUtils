@@ -22,6 +22,24 @@ namespace UUtils
             index = list.Count == 1 ? 0 : Random.Range(0, list.Count);
             return list[index];
         }
+
+        /// <summary>
+        /// Shuffles the list in place. It performs N swaps, with N being the number of elements in the list.
+        /// The [repetitions] repeat the entire process. Default is set to 1, so N operations.
+        /// If repetition is set to 2, then the method will perform 2 * N operations.
+        /// </summary>
+        /// <param name="list">List to be shuffled.</param>
+        /// <param name="repetitions">Number of repetitions over the N elements.</param>
+        public static void ShuffleList(ref List<T> list, int repetitions = 1)
+        {
+            var iterations = list.Count * repetitions;
+            while (iterations > 1)
+            {
+                iterations--;
+                var k = Random.Range(0, list.Count);
+                (list[k], list[iterations]) = (list[iterations], list[k]);
+            }
+        }
     }
 
     public static class RandomChanceUtils
