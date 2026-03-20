@@ -17,6 +17,14 @@ namespace UUtils
         public static T GetSingleton() => _singleton;
         private static GameObject _singletonObject;
 
+        public static bool TryToGetSingleton(out T singleton)
+        {
+            singleton = null;
+            if (_singleton == null) return false;
+            singleton = _singleton;
+            return true;
+        }
+        
         private void ControlSingleton()
         {
             if (_singleton != null)
