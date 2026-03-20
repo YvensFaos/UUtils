@@ -86,7 +86,7 @@ namespace UUtils
             return new Vector3(randomPoint2D.x, randomPoint2D.y, 0.0f);
         }
         
-        public static Vector3 GetRandomPointWithinCircleCollider2(CircleCollider2D circleCollider, float ignoreRadius = 0.0f)
+        public static Vector3 GetRandomPointWithinCircleCollider2D(CircleCollider2D circleCollider, float ignoreRadius = 0.0f)
         {
             if (ignoreRadius != 0.0f && ignoreRadius > 0.0f && ignoreRadius < circleCollider.radius)
             {
