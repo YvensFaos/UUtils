@@ -14,7 +14,7 @@ namespace UUtils
     {
         public static T GetRandomFromList(List<T> list)
         {
-            return list.Count == 1 ? list[0] : list[Random.Range(0, list.Count)];
+            return (list == null || list.Count == 0) ? default : (list.Count == 1 ? list[0] : list[Random.Range(0, list.Count)]);
         }
         
         public static T GetRandomFromListWithIndex(List<T> list, out int index)
