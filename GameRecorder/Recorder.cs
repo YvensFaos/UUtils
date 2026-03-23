@@ -18,19 +18,19 @@ namespace UUtils.GameRecorder
         private bool _closed;
         private bool _disposed;
         
-        public Recorder(string identifier, string extension = "rec")
+        public Recorder(string identifier, string extension = ".rex")
         {
             _identifier = identifier;
             _entries = new List<RecordEntry>();
             _logger = new Logger(DebugUtils.DebugType.Regular);
-            _logger.StartNewLogFile($"{identifier}.{extension}");
+            _logger.StartNewLogFile($"{identifier}",$"{extension}");
         }
 
         public void RecordNewEntry(RecordEntry newEntry)
         {
             if (_closed || _disposed) return;
             _entries.Add(newEntry);
-            _logger.AddLine(newEntry.ToString(), DebugUtils.DebugType.Regular, false);
+            _logger.AddLine(newEntry.ToString(), DebugUtils.DebugType.Regular, false, false);
         }
 
         public void Stop()

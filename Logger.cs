@@ -37,12 +37,12 @@ namespace UUtils
             }
         }
 
-        public string StartNewLogFile(string logFileName = "log_")
+        public string StartNewLogFile(string logFileName = "log_", string extension = ".log", bool appendIfExists = false)
         {
-            return StartNewLogFile(logFileName, GetDefaultLogsDirectory());
+            return StartNewLogFile(logFileName, extension, GetDefaultLogsDirectory(), appendIfExists);
         }
 
-        private string StartNewLogFile(string fileName, string directoryPath, bool appendIfExists = false)
+        private string StartNewLogFile(string fileName, string extension, string directoryPath, bool appendIfExists = false)
         {
             lock (_lockObject)
             {
@@ -65,9 +65,16 @@ namespace UUtils
                     }
                 }
 
-                if (!fileName.EndsWith(DefaultFileExtension, StringComparison.OrdinalIgnoreCase))
+                if (string.IsNullOrEmpty(extension))
                 {
-                    fileName += DefaultFileExtension;
+                    if (!fileName.EndsWith(DefaultFileExtension, StringComparison.OrdinalIgnoreCase))
+                    {
+                        fileName += DefaultFileExtension;    
+                    }
+                }
+                else if (!fileName.EndsWith(extension, StringComparison.OrdinalIgnoreCase))
+                {
+                    fileName += extension;
                 }
 
                 var fullPath = Path.Combine(directoryPath, fileName);
@@ -94,7 +101,7 @@ namespace UUtils
         }
 
         public void AddLine(string message, DebugUtils.DebugType debugType = DebugUtils.DebugType.System,
-            bool includeTimestamp = true)
+            bool includeTimestamp = true, bool includeMessageType = true)
         {
             if (!_minimumLogLevel.HasFlag(debugType)) return;
 
@@ -115,7 +122,10 @@ namespace UUtils
                         _stringBuilder.Append(";");
                     }
 
-                    _stringBuilder.Append($"[{debugType.ToString().ToUpper()}];");
+                    if (includeMessageType)
+                    {
+                        _stringBuilder.Append($"[{debugType.ToString().ToUpper()}];");    
+                    }
                     _stringBuilder.Append(message);
 
                     var logLine = _stringBuilder.ToString();
