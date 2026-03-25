@@ -63,7 +63,6 @@ namespace UUtils.GameRecorder
                 yield break;
             }
             
-            //Start reading the record file's content
             foreach (var entryText in recordData)
             {
                 if (pause) yield return new WaitUntil(() => !pause);
@@ -71,8 +70,10 @@ namespace UUtils.GameRecorder
                 yield return new WaitForSeconds(0.5f);
                 if (!stepByStep) continue;
                 nextStep = false;
-                yield return new WaitUntil(() => !nextStep);
+                yield return new WaitUntil(() => nextStep);
             }
+            
+            DebugUtils.DebugLogMsg($"Record file {file} has been played.", DebugUtils.DebugType.System);
             yield return null;
         }
 
