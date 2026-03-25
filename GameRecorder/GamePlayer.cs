@@ -68,6 +68,7 @@ namespace UUtils.GameRecorder
             {
                 if (pause) yield return new WaitUntil(() => !pause);
                 ExecuteEntry(entryText);
+                yield return new WaitForSeconds(0.5f);
                 if (!stepByStep) continue;
                 nextStep = false;
                 yield return new WaitUntil(() => !nextStep);
