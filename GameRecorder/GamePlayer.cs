@@ -15,7 +15,7 @@ namespace UUtils.GameRecorder
     public abstract class GamePlayer : MonoBehaviour
     {
         [SerializeField]
-        private bool playOnStart;
+        protected bool playOnStart;
         [SerializeField, ShowIf("playOnStart")]
         private string recordFile;
         [SerializeField, ReadOnly]
@@ -31,7 +31,7 @@ namespace UUtils.GameRecorder
 
         private Coroutine _playCoroutine;
         
-        private void Start()
+        protected virtual void Start()
         {
             if (playOnStart)
             {
@@ -39,7 +39,7 @@ namespace UUtils.GameRecorder
             }
         }
 
-        public void StartPlayingRecord(string file)
+        public virtual void StartPlayingRecord(string file)
         {
             if (playing) return;
             playing = true;
@@ -75,7 +75,7 @@ namespace UUtils.GameRecorder
             yield return null;
         }
 
-        protected abstract RecordEntry ExecuteEntry(string entryText);
+        protected abstract void ExecuteEntry(string entryText);
 
         [Button("Step by Step")]
         private void StepByStepPlayer() => ToggleStepByStep(!stepByStep);
