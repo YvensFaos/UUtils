@@ -17,6 +17,8 @@ namespace UUtils.GameRecorder
         [SerializeField]
         protected bool playOnStart;
         [SerializeField, ShowIf("playOnStart")]
+        private string recordPath;
+        [SerializeField, ShowIf("playOnStart")]
         private string recordFile;
         [SerializeField, ReadOnly]
         private bool playing;
@@ -35,10 +37,14 @@ namespace UUtils.GameRecorder
         {
             if (playOnStart)
             {
-                StartPlayingRecord(recordFile);
+                StartPlayingRecord($"{recordPath}{recordFile}");
             }
         }
 
+        /// <summary>
+        /// File must include the path to the file. For example, "Assets/Logs/Record.rex".
+        /// </summary>
+        /// <param name="file"></param>
         public virtual void StartPlayingRecord(string file)
         {
             if (playing) return;
