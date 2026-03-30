@@ -29,7 +29,7 @@ namespace UUtils
                     return true;
                 }
             }
-            DebugUtils.DebugLogErrorMsg($"Error: Component of type ${requirementType.GetType()} not found in ${owner.gameObject.name}!");
+            DebugUtils.DebugLogErrorMsg($"Error: Component of type ${typeof(T)} not found in ${owner.gameObject.name}!");
             return false;
         }
 
