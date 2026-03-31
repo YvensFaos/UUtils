@@ -10,6 +10,8 @@ namespace UUtils.GameRecorder
 {
     public abstract class RecordEntry
     {
+        public abstract void PerformEntry();
+        
         public override string ToString()
         {
             return "entry";
