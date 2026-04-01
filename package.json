@@ -1,0 +1,14 @@
+{
+  "name": "com.dagongraphics.uutils",
+  "version": "1.0.0",
+  "displayName": "UUtils",
+  "description": "UUtils is a bundle of utility and agnostic scripts to be used in Unity projects.",
+  "unity": "6000.3.6f1",
+  "author": {
+    "name": "Yvens R serpa",
+    "url": "https://github.com/YvensFaos/UUtils"
+  },
+  "dependencies": {
+
+  }
+}

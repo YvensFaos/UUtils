@@ -3,7 +3,10 @@
 
 # UUTils
 
-UUtils is a bundle of utility and agnostic scripts to be used in Unity projects.
+UUtils uses [NaughtyAttributes](https://github.com/dbrizov/NaughtyAttributes) and [DOTween](https://dotween.demigiant.com/), both in their free versions.
+
+- [NaughtyAttributes](https://github.com/dbrizov/NaughtyAttributes) – add via Package Manager using Git URL: `https://github.com/dbrizov/NaughtyAttributes.git`
+- [DOTween (Free)](http://dotween.demigiant.com/) – import from the [Asset Store](https://assetstore.unity.com/packages/tools/animation/dotween-hotween-v2-27676).
 
 ## Dependencies
 

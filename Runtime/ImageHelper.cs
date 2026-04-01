@@ -37,7 +37,8 @@ namespace UUtils
             }
 
             _internalTween?.Kill();
-            _internalTween = image.DOColor(hexColor, 0.2f);
+            //TODO Fix
+            // _internalTween = image.DOColor(hexColor, 0.2f);
         }
 
         public void AnimateToB3()
@@ -63,13 +64,15 @@ namespace UUtils
         public void AnimateColorTo(Vector3 color)
         {
             _internalTween?.Kill();
-            _internalTween = image.DOColor(new Color(color.x, color.y, color.z, 1.0f), 0.2f);
+            //TODO Fix
+            // _internalTween = image.DOColor(new Color(color.x, color.y, color.z, 1.0f), 0.2f);
         }
         
         public void AnimateColorTo(Color color)
         {
             _internalTween?.Kill();
-            _internalTween = image.DOColor(color, 0.2f);
+            //TODO Fix
+            // _internalTween = image.DOColor(color, 0.2f);
         }
 
         public void ChangeSpriteTo(Sprite sprite)

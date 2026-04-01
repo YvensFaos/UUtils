@@ -7,16 +7,17 @@
  */
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UUtils
 {
-    public class AnimatedImage : MonoBehaviour
+    public class AnimatedSprite : MonoBehaviour
     {
+        [SerializeField]
+        private SpriteRenderer sprite;
         [SerializeField] 
-        private Image image;
-        [SerializeField] 
-        private RectTransform rect;
+        private Transform rect;
+        [SerializeField]
+        private bool forceAlpha = true;
 
         [Header("Animation Properties")] 
         [SerializeField]
@@ -30,27 +31,33 @@ namespace UUtils
         
         private void Awake()
         {
+            AssessUtils.CheckRequirement(ref sprite, this);
             AssessUtils.CheckRequirement(ref rect, this);
+
             _originalScale = rect.localScale;
         }
 
         private void OnEnable()
         {
             _introTween?.Kill();
-            var currentColor = image.color;
-            currentColor.a = 1.0f;    
+            var currentColor = sprite.color;
+            if (forceAlpha)
+            {
+                currentColor.a = 1.0f;    
+            }
             
             var noAlpha = currentColor;
             noAlpha.a = 0.0f;
-            image.color = noAlpha;
-            _introTween = image.DOColor(currentColor, 0.2f).OnComplete(() =>
-            {
-                image.color = currentColor;
-            });
+            sprite.color = noAlpha;
+            //TODO Fix
+            // _introTween = sprite.DOColor(currentColor, 0.2f).OnComplete(() =>
+            // {
+            //     sprite.color = currentColor;
+            // });
             
             _bounceTween?.Kill();
             rect.localScale = _originalScale;
-            _bounceTween = rect.DOScale(new Vector3(scale,scale,scale), duration).SetLoops(-1, LoopType.Yoyo).OnComplete(() =>
+            _bounceTween = rect.DOScale(new Vector3(scale,scale,scale), duration).SetLoops(-1).OnComplete(() =>
             {
                 rect.localScale = _originalScale;
             });
