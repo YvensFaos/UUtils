@@ -22,6 +22,11 @@ namespace UUtils
             ResetCurrentScene();
         }
 
+        public static void LoadScene(string sceneName)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+
         public static void ResetCurrentScene()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
