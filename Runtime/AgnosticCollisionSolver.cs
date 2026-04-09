@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace UUtils
 {
-    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Collider2D))]
     public abstract class AgnosticCollisionSolver : MonoBehaviour
     {
         [SerializeField]
