@@ -28,9 +28,9 @@ namespace UUtils.GameRecorder
             }
         }
 
-        public void StartRecording(string recordingIdentifier)
+        public void StartRecording(string recordingIdentifier, string extension = ".log")
         {
-            _recorder = new Recorder(recordingIdentifier);
+            _recorder = new Recorder(recordingIdentifier, extension);
         }
 
         public void RecordNewEntry(RecordEntry entry)
